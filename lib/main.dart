@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       textDirection: TextDirection.rtl,
       child:MultiBlocProvider(
         providers: [
-          BlocProvider(create: (BuildContext context)=>WebsiteCubit()..getBusinessArticles()..getSportsArticles()),
+          BlocProvider(create: (BuildContext context)=>WebsiteCubit()..getBusinessArticles()..getSportsArticles()..getStates()),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

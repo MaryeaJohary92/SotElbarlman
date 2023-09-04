@@ -20,7 +20,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (BuildContext context)=>WebsiteCubit()..getBusinessArticles()..getSportsArticles(),
+    return BlocProvider(create: (BuildContext context)=>WebsiteCubit()..getBusinessArticles()..getSportsArticles()..getStates(),
     child: BlocConsumer<WebsiteCubit,WebsiteStates>(
       listener: (BuildContext context,WebsiteStates state){},
       builder: (BuildContext context,WebsiteStates state){

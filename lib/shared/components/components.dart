@@ -8,6 +8,7 @@ import '../../modules/FollowPage.dart';
 import '../../modules/ParlimentFollowPage.dart';
 import '../../modules/ParlimentVoice.dart';
 import '../cubit/cubit.dart';
+import 'constants.dart';
 
 Widget buildBusinessNewsCart(BuildContext context,NewsModel? model){
   return Container(
@@ -77,21 +78,22 @@ Widget buildParlimentVoiceCart(BuildContext context,snapshot){
     ),
     child: ListTile(
       onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ParlimentDetailsPage(id:snapshot!['id'],)));
+        Gid=snapshot.id;
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>ParlimentDetailsPage(id:snapshot.id,)));
       },
       title: Column(
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image(
-              image:NetworkImage('${snapshot!['imgURL']}'),height: MediaQuery.of(context).size.height/9,width: MediaQuery.of(context).size.width,fit: BoxFit.fill ,),
+              image:NetworkImage('${snapshot.imgURL}'),height: MediaQuery.of(context).size.height/9,width: MediaQuery.of(context).size.width,fit: BoxFit.fill ,),
           ),
           SizedBox(height: 2,),
-          snapshot!['male']==true?Text(
-            ' النائب : ${snapshot!['name']}',overflow: TextOverflow.ellipsis,maxLines: 2,
+          snapshot.male==true?Text(
+            ' النائب : ${snapshot.Name}',overflow: TextOverflow.ellipsis,maxLines: 2,
             style: TextStyle(color: Colors.brown,fontSize: MediaQuery.of(context).size.width>500?25:14),)
               :Text(
-            ' النائبه : ${snapshot!['name']}',overflow: TextOverflow.ellipsis,maxLines: 2,
+            ' النائبه : ${snapshot.Name}',overflow: TextOverflow.ellipsis,maxLines: 2,
             style: TextStyle(color: Colors.brown,fontSize: MediaQuery.of(context).size.width>500?25:14),),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -101,7 +103,7 @@ Widget buildParlimentVoiceCart(BuildContext context,snapshot){
               Icon(Icons.question_mark,color: Colors.brown,size:MediaQuery.of(context).size.width>500?25:10,)
             ],
           ),
-          Text(' المحافظه : ${snapshot!['state']}',style: TextStyle(color: Colors.grey,fontSize: MediaQuery.of(context).size.width>500?25:14),)
+          Text(' المحافظه : ${snapshot.state}',style: TextStyle(color: Colors.grey,fontSize: MediaQuery.of(context).size.width>500?25:14),)
 
         ],
       ),
@@ -109,7 +111,7 @@ Widget buildParlimentVoiceCart(BuildContext context,snapshot){
   );
 }
 
-Widget stateParlimentBuilder(BuildContext context, snapshot){
+Widget stateParlimentBuilder(BuildContext context,snapshot){
   return Container(
     height: MediaQuery.of(context).size.height/6,
     width: MediaQuery.of(context).size.width/5,
@@ -119,9 +121,10 @@ Widget stateParlimentBuilder(BuildContext context, snapshot){
     ),
     child: ListTile(
       onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PalimentVoice(state:snapshot!['name'],)));
+        GState=snapshot.Name;
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PalimentVoice(state:snapshot.Name,)));
       },
-      title: Center(child:Text(' محافظه : ${snapshot!['name']}',style: TextStyle(color: Colors.brown,fontSize:MediaQuery.of (context).size.width > 500 ?20 : MediaQuery.of (context).size.width > 300 ?15:10),)
+      title: Center(child:Text(' محافظه : ${snapshot.Name}',style: TextStyle(color: Colors.brown,fontSize:MediaQuery.of (context).size.width > 500 ?20 : MediaQuery.of (context).size.width > 300 ?15:10),)
         ,),
     ),
   );

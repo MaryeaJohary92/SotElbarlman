@@ -13,6 +13,18 @@ class GetWebsiteNewsParlimentLoadingState extends WebsiteStates{}
 class GetWebsiteNewsParlimentSuccessState extends WebsiteStates{}
 class GetWebsiteNewsParlimentErrorState extends WebsiteStates{}
 
+class GetWebsiteNewsParlimentStatesLoadingState extends WebsiteStates{}
+class GetWebsiteNewsParlimentStatesSuccessState extends WebsiteStates{}
+class GetWebsiteNewsParlimentStatesErrorState extends WebsiteStates{}
+
 class GetWebsiteSearchNewsLoadingState extends WebsiteStates{}
 class GetWebsiteSearchNewsSuccessState extends WebsiteStates{}
 class GetWebsiteSearchNewsErrorState extends WebsiteStates{}
+
+class GetWebsiteParlimentLoadingState extends WebsiteStates{}
+class GetWebsiteParlimentSuccessState extends WebsiteStates{}
+class GetWebsiteParlimentErrorState extends WebsiteStates{}
+
+class GetWebsiteParlimentPostsLoadingState extends WebsiteStates{}
+class GetWebsiteParlimentPostsSuccessState extends WebsiteStates{}
+class GetWebsiteParlimentPostsErrorState extends WebsiteStates{}
