@@ -1,0 +1,18 @@
+abstract class WebsiteStates{}
+class WebsiteInitialState extends WebsiteStates{}
+class WebsiteChangeNavigationOfPagesState extends WebsiteStates{}
+class GetWebsiteNewsBusinessLoadingState extends WebsiteStates{}
+class GetWebsiteNewsBusinessSuccessState extends WebsiteStates{}
+class GetWebsiteNewsBusinessErrorState extends WebsiteStates{}
+
+class GetWebsiteNewsSportsLoadingState extends WebsiteStates{}
+class GetWebsiteNewsSportsSuccessState extends WebsiteStates{}
+class GetWebsiteNewsSportsErrorState extends WebsiteStates{}
+
+class GetWebsiteNewsParlimentLoadingState extends WebsiteStates{}
+class GetWebsiteNewsParlimentSuccessState extends WebsiteStates{}
+class GetWebsiteNewsParlimentErrorState extends WebsiteStates{}
+
+class GetWebsiteSearchNewsLoadingState extends WebsiteStates{}
+class GetWebsiteSearchNewsSuccessState extends WebsiteStates{}
+class GetWebsiteSearchNewsErrorState extends WebsiteStates{}
