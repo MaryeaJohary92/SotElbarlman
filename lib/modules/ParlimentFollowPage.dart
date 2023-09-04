@@ -23,8 +23,8 @@ class _ParlimentDetailsPageState extends State<ParlimentDetailsPage> {
         listener:(BuildContext context,WebsiteStates state){},
         builder:(BuildContext context,WebsiteStates state){
           WebsiteCubit cubit=WebsiteCubit.get(context);
-          cubit.getParliment(Gid);
-          cubit.getParlimentFollowData(Gid);
+          cubit.getParliment(widget.id as String);
+          cubit.getParlimentFollowData(widget.id as String);
           return ConditionalBuilder(
             condition:cubit.parlirmentData!=null && cubit.parlimentCardFollowData.isNotEmpty ,
             builder:(context)=> Scaffold(

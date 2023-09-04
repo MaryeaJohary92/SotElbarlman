@@ -23,7 +23,7 @@ void main() async {
         appId: "1:227053175936:web:ef179ffa4179ee6684d265",
         measurementId: "G-0RMRT5N36X"    )
   );
-  Bloc.observer=MyBlocObserver();
+  //Bloc.observer=MyBlocObserver();
   DioHelper.init();
   runApp(MyApp());
 }

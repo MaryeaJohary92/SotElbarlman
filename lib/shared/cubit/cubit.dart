@@ -18,8 +18,9 @@ import '../network/remote/dio_helper.dart';
 class WebsiteCubit extends Cubit<WebsiteStates>{
   WebsiteCubit():super(WebsiteInitialState());
  static WebsiteCubit get(context)=>BlocProvider.of(context);
+ //going through pages of app
   int selectedIndex = 1;
-
+  //cubit main outside lists access
   List<Widget> widgets=[
     MainPage(),
     StatePage(),
@@ -30,14 +31,20 @@ class WebsiteCubit extends Cubit<WebsiteStates>{
   List<ParlimentCard> parlimentCards=[];
   ParlimentCard? parlirmentData;
   List<ParlimentCardFollowData> parlimentCardFollowData=[];
-
+  //cubit inside access models
+  BusinessDataModel? businessArticles;
+  SportsDataModel? sportsArticles;
+  List<States>? statesStore;
+  List<ParlimentCard>? parlimentStore;
+  List<ParlimentCardFollowData>? parlimentFollowDataStore;
+  //cubit main methods
+    //change page method
   void changeIndex(int index,BuildContext context){
     selectedIndex=index;
     Navigator.pop(context);
     emit(WebsiteChangeNavigationOfPagesState());
   }
-
-  BusinessDataModel? businessArticles;
+    //get news from api
   void getBusinessArticles(){
     if(businessArticles?.articles.length!=0)
     {
@@ -55,7 +62,6 @@ class WebsiteCubit extends Cubit<WebsiteStates>{
       emit(GetWebsiteNewsBusinessSuccessState());
     }
   }
-  SportsDataModel? sportsArticles;
   void getSportsArticles(){
     if(sportsArticles?.articles.length!=0)
     {
@@ -73,8 +79,6 @@ class WebsiteCubit extends Cubit<WebsiteStates>{
       emit(GetWebsiteNewsSportsSuccessState());
     }
   }
-
-
   /*List<dynamic> search=[];
   void getSearch(String value){
     emit(GetWebsiteSearchNewsLoadingState());
@@ -87,8 +91,7 @@ class WebsiteCubit extends Cubit<WebsiteStates>{
       emit(GetWebsiteSearchNewsErrorState());
     });
   }*/
-
-  List<States>? statesStore;
+    //get news from firebase
   Future<List<States>> getStates()async {
     emit(GetWebsiteNewsParlimentStatesLoadingState());
     await FirebaseFirestore.instance.collection('states').snapshots().forEach((element) {
@@ -102,8 +105,6 @@ class WebsiteCubit extends Cubit<WebsiteStates>{
     });
     return states;
   }
-
-  List<ParlimentCard>? parlimentStore;
   Future<List<ParlimentCard>> getParlimentCards(String state)async {
     emit(GetWebsiteNewsParlimentLoadingState());
     await FirebaseFirestore.instance.collection('persons').where("state",isEqualTo: state).snapshots().forEach((element) {
@@ -117,7 +118,6 @@ class WebsiteCubit extends Cubit<WebsiteStates>{
     });
     return parlimentCards;
   }
-
   Future<ParlimentCard?> getParliment(String id)async {
     emit(GetWebsiteParlimentLoadingState());
     await FirebaseFirestore.instance.collection('persons').doc(id).get().then((value) {
@@ -127,8 +127,6 @@ class WebsiteCubit extends Cubit<WebsiteStates>{
     }).catchError((onError){emit(GetWebsiteParlimentErrorState());});
     return parlirmentData;
   }
-
-  List<ParlimentCardFollowData>? parlimentFollowDataStore;
   Future<List<ParlimentCardFollowData>> getParlimentFollowData(String id)async {
     emit(GetWebsiteParlimentPostsLoadingState());
     await FirebaseFirestore.instance.collection('البيانات').where('id', isEqualTo:id).orderBy('time').snapshots().forEach((element) {
@@ -142,6 +140,4 @@ class WebsiteCubit extends Cubit<WebsiteStates>{
     });
     return parlimentCardFollowData;
   }
-
-
 }
